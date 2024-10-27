@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaPasanteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Opciones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_opcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Producto_relacionado" Type="Int32" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK__Opciones__Produc__2B3F6F97" FromRole="Opciones" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Existencia" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="Nombre_proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Opciones" Relationship="Self.FK__Opciones__Produc__2B3F6F97" FromRole="Productos" ToRole="Opciones" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_creacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK__Opciones__Produc__2B3F6F97">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Opciones" Type="Self.Opciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Opciones">
+        <PropertyRef Name="Producto_relacionado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PruebaPasanteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Opciones" EntityType="Self.Opciones" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK__Opciones__Produc__2B3F6F97" Association="Self.FK__Opciones__Produc__2B3F6F97">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Opciones" EntitySet="Opciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
