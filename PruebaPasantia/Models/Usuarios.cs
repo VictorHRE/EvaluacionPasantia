@@ -21,6 +21,6 @@ namespace PruebaPasantia.Models
         public string Apellido { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public Nullable<System.DateTime> Fecha_creacion { get; set; }
+        public DateTime Fecha_creacion { get; set; } = DateTime.Now;
     }
 }

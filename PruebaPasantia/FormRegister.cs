@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,7 +21,10 @@ namespace PruebaPasantia
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            AgregarUsuario();
+            if (ValidarCampos())
+            {
+                AgregarUsuario(); // Método para agregar usuario a la base de datos si la validación es correcta
+            }
         }
 
         private void AgregarUsuario()
@@ -73,6 +77,26 @@ namespace PruebaPasantia
                 }
             }
 
+        }
+        private bool ValidarCampos()
+        {
+            // Validación de correo
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(txtCorreo.Text, emailPattern))
+            {
+                MessageBox.Show("El correo no tiene el formato correcto (ejemplo: juan@gmail.com).");
+                return false;
+            }
+
+            // Validación de teléfono
+            string telefonoPattern = @"^\d{4}-\d{4}$";
+            if (!Regex.IsMatch(txtTelefono.Text, telefonoPattern))
+            {
+                MessageBox.Show("El teléfono no tiene el formato correcto (ejemplo: 0000-0000).");
+                return false;
+            }
+
+            return true;
         }
     }
 }
