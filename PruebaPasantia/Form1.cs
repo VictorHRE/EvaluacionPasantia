@@ -31,7 +31,7 @@ namespace PruebaPasantia
         {
             using (Models.PruebaPasanteEntities db = new Models.PruebaPasanteEntities())
             {
-                var lst = from d in db.Usuarios
+                var lst = from d in db.Usuarios  // Autenticacion 
                           where d.Correo  == CorreoTxt.Text
                           && d.Contrasena == PassText.Text
                           select d;
@@ -43,17 +43,20 @@ namespace PruebaPasantia
                    
                     FormMain frm = new FormMain();
                     frm.Show();
+                    
                 }
                 else
                 {
                     MessageBox.Show("Correo y contraseña no coinciden ");
                 }
+              
             }
+           
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormRegister frm = new FormRegister();
+            FormRegister frm = new FormRegister(); // Presenta el formulario de registro
             frm.Show();
         }
     }
