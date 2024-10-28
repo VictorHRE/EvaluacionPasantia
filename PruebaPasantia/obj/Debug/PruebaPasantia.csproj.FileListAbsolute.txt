@@ -15,3 +15,4 @@ C:\Users\Victor Romero\Documents\EvaluacionPasantia\PruebaPasantia\obj\Debug\Pru
 C:\Users\Victor Romero\Documents\EvaluacionPasantia\PruebaPasantia\obj\Debug\PruebaPasantia.pdb
 C:\Users\Victor Romero\Documents\EvaluacionPasantia\PruebaPasantia\obj\Debug\PruebaPasantia.FormMain.resources
 C:\Users\Victor Romero\Documents\EvaluacionPasantia\PruebaPasantia\obj\Debug\PruebaPasantia.FormRegister.resources
+C:\Users\Victor Romero\Documents\EvaluacionPasantia\PruebaPasantia\obj\Debug\PruebaPasantia.FormOpcion.resources

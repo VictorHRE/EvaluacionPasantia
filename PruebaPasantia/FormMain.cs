@@ -23,8 +23,30 @@ namespace PruebaPasantia
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            
             CargarGrid(); // Método para cargar los datos
+            DataGridViewButtonColumn verOpcionesButton = new DataGridViewButtonColumn();// Boton en el data
+            verOpcionesButton.Name = "VerOpciones";
+            verOpcionesButton.HeaderText = "Ver Opciones";
+            verOpcionesButton.Text = "Ver Opciones";
+            verOpcionesButton.UseColumnTextForButtonValue = true;
+            dgDatos.Columns.Add(verOpcionesButton);
+            dgDatos.CellClick += dataGridView_CellClick;
+
         }
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica si se hizo clic en la columna de botón
+            if (e.ColumnIndex == dgDatos.Columns["VerOpciones"].Index && e.RowIndex >= 0)
+            {
+                int codigoProducto = Convert.ToInt32(dgDatos.Rows[e.RowIndex].Cells["Codigo"].Value);
+                FormOpcion frm = new FormOpcion(codigoProducto); // Presenta el formulario de opciones
+                frm.Show();
+            }
+        }
+        
+
+
         public void CargarGrid() 
         {
 
@@ -61,7 +83,7 @@ namespace PruebaPasantia
 
                 
                 dgDatos.DataSource = productos;
-                dgDatos.Columns[5].Visible = false;
+                dgDatos.Columns[6].Visible = false;
             }
 
         }
@@ -81,7 +103,7 @@ namespace PruebaPasantia
                
 
                 dgDatos.DataSource = productos.ToList();
-                dgDatos.Columns[5].Visible = false;
+                dgDatos.Columns[6].Visible = false;
             }
         }
 
